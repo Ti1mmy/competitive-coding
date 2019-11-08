@@ -4,9 +4,11 @@ mass = []
 masssum = []
 for i in range(int(input())):
     mass.append(int(input()))
-masssum.append(mass[0])
-for i in range(1, len(mass)):
-    masssum.append(masssum[i-1] + mass[i])
+for i in range(len(mass)):
+    if i == 0:
+        masssum.append(mass[i])
+    else:
+        masssum.append(masssum[i-1] + mass[i])
 for i in range(int(input())):
     a = input()
     b = a.split()
