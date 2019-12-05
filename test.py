@@ -1,3 +1,5 @@
-i = 123456
-ay = [int(i) for i in str(i)]
-print(ay)
+thing = []
+thing.append('a')
+thing.append('b')
+thing.append('c')
+print(thing)

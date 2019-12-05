@@ -1,20 +1,91 @@
-"""
-when asking for input, input 1
-"""
-import sys
-input = sys.stdin.readline
-k = [1,12,2,3,1,1,2,3,1,3,4,3,1,5,0,3,2,1,9,19,1,10,19,23,2,9,23,27,1,6,27,31,2,31,9,35,1,5,35,39,1,10,39,43,1,10,43,47,2,13,47,51,1,10,51,55,2,55,10,59,1,9,59,63,2,6,63,67,1,5,67,71,1,71,5,75,1,5,75,79,2,79,13,83,1,83,5,87,2,6,87,91,1,5,91,95,1,95,9,99,1,99,6,103,1,103,13,107,1,107,5,111,2,111,13,115,1,115,6,119,1,6,119,123,2,123,13,127,1,10,127,131,1,131,2,135,1,135,5,0,99,2,14,0,0
-]
-i = 0
-while True:
-    if k[i] == 1:
-        b = k[k[i + 1]] + k[k[i + 2]]
-        k[k[i + 3]] = b
-    elif k[i] == 2:
-        b = k[k[i + 1]] * k[k[i + 2]]
-        k[k[i + 3]] = b
-    elif k[i] == 99:
-        break
-    i += 4
-print(k[0])
-print(k)
+original = [int(s) for s in input().split(',')]
+o = original.copy()
+
+input = 5
+outputs = []
+
+
+go = True
+
+
+def assignpara(oc, ocpos, opos):
+    print(opos)
+    if oc[ocpos] == 0:
+        return o[o[n + opos]]
+    elif oc[ocpos] == 1:
+        return o[n + opos]
+
+
+def parse(n):
+    oc = str(o[n])
+    if len(oc) < 5:
+        oc = (5-len(oc))*'0' + oc
+    oc = [int(s) for s in oc]
+    if oc[-1] == 1 or oc[-1] == 2:
+        a = 0
+        b = 0
+        a = assignpara(oc, -3, 1)
+        b = assignpara(oc, -4, 2)
+        if oc[-1] == 1:
+            c = a + b 
+        elif oc[-1] == 2:
+            c = a * b
+        o[o[n + 3]] = c
+        return n + 4
+
+    elif oc[-1] == 3:
+        o[o[n + 1]] = input
+        return n + 2
+
+    elif oc[-1] == 4:
+        a = assignpara(oc, -3, 1)
+        outputs.append(a)
+        return n + 2
+    
+    elif oc[-1] == 5 or oc[-1] == 6:
+        a = 0
+        b = 0
+        a = assignpara(oc, -3, 1)
+        b = assignpara(oc, -4, 2)
+        
+        if oc[-1] == 5:
+            if a != 0:
+                return b
+        elif oc[-1] == 6:
+            if a == 0:
+                return b
+        return n + 3
+
+    elif oc[-1] == 7:
+        a = 0
+        b = 0
+        a = assignpara(oc, -3, 1)
+        b = assignpara(oc, -4, 2)
+        if a < b:
+            o[o[n+3]] = 1
+        else: 
+            o[o[n+3]] = 0
+        return n + 4
+    
+    elif oc[-1] == 8:
+        a = 0
+        b = 0
+        a = assignpara(oc, -3, 1)
+        b = assignpara(oc, -4, 2)
+        if a == b:
+            o[o[n+3]] = 1
+        else:
+            o[o[n+3]] = 0
+        return n + 4
+
+    elif oc[-1] == 9 and oc[-2] == 9:
+        global go
+        go = False
+        return n + 1
+n = 0
+while go:
+    n = parse(n)
+    print(outputs)
+
+
+print(outputs)
