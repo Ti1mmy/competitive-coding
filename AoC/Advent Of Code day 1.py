@@ -3,7 +3,7 @@ input = sys.stdin.readline
 sum = 0
 while True:
     a = input()
-    if a == "\n" or "":
+    if a == "\n":
         break
     else:
         b = int(a)
