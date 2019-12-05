@@ -1,10 +1,7 @@
 original = [int(s) for s in input().split(',')]
 o = original.copy()
-
 input = 5
 outputs = []
-
-
 go = True
 
 
@@ -86,6 +83,4 @@ n = 0
 while go:
     n = parse(n)
     print(outputs)
-
-
 print(outputs)
