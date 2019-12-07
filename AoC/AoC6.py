@@ -33,5 +33,21 @@ for point in points:
 for route in routes:
     route.reverse()
     count += len(route)
+#part 2
+important = []
+for route in routes:
+    if 'YOU' in route or 'SAN' in route:
+        important.append(route)
+counter = 0
+while True:
+    if important[0][counter] == important[1][counter]:
+        important[0].remove(important[0][counter])
+        important[1].remove(important[1][counter])
+    else:
+        break
 print(routes)
 print(count)
+for imp in important:
+    counter += len(imp)
+counter -= 2
+print(counter)
