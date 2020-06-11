@@ -1,11 +1,5 @@
-a = input()
-if len(a) == 1:
-    print(a)
-else:
-    thing = []
-    for i in range(len(a)):
-        thing.append(a[i:] + a[:i])
-        thing.append((a[i:] + a[:i])[::-1])
-    thing.sort()
-    for t in thing:
-        print(t)
+from sys import stdin, stdout
+from itertools import permutations
+a = list(stdin.readline())[:-1]
+for i in sorted(permutations(a, len(a))):
+    stdout.write(f'{"".join(i)}\n')
