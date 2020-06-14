@@ -1,4 +1,4 @@
-# competative-coding
+# competitive-coding
 CCC Prep/DMOJ
 ```python
 import sys
